@@ -62,7 +62,7 @@
 #  #when: ansible_service_mgr == "systemd"
 
 - name: Start and enable tomcat
-  command: systemctl enable tomcat && systemctl start tomcat && systemctl status tomcat
+  command: "systemctl enable tomcat && systemctl start tomcat && systemctl status tomcat"
 
 #- name: Start and enable firewalld
 #  systemd:
