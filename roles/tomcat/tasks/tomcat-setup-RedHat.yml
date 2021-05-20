@@ -54,7 +54,7 @@
   when: ansible_service_mgr == "systemd"
 
 - name: Start and enable tomcat
-  service:
+  systemd:
     daemon_reload: yes
     name: tomcat
     state: started
@@ -62,7 +62,7 @@
   when: ansible_service_mgr == "systemd"
 
 - name: Start and enable firewalld
-  service:
+  systemd:
     name: firewalld
     state: started
     enabled: yes
