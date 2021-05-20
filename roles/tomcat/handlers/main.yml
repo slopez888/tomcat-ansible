@@ -1,4 +1,2 @@
-- name: restart tomcat
-  service:
-    name: tomcat
-    state: restarted
+- name: Start and enable tomcat
+  command: "systemctl enable tomcat"
