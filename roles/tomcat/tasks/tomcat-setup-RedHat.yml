@@ -53,28 +53,34 @@
     dest: /etc/systemd/system/tomcat.service
   when: ansible_service_mgr == "systemd"
 
+#- name: Start and enable tomcat
+#  systemd:
+#    #daemon_reload: yes
+#    name: tomcat
+#    state: started
+#    enabled: yes
+#  #when: ansible_service_mgr == "systemd"
+
 - name: Start and enable tomcat
-  systemd:
-    #daemon_reload: yes
-    name: tomcat
-    state: started
-    enabled: yes
-  #when: ansible_service_mgr == "systemd"
+  command: systemctl enable tomcat && systemctl start tomcat && systemctl status tomcat
 
-- name: Start and enable firewalld
-  systemd:
-    name: firewalld
-    state: started
-    enabled: yes
-  #when: ansible_service_mgr == "systemd"
+#- name: Start and enable firewalld
+#  systemd:
+#    name: firewalld
+#    state: started
+#    enabled: yes
+#  #when: ansible_service_mgr == "systemd"
 
-- name: Open tomcat port on the firewall
-  firewalld:
-    port: 8080/tcp
-    permanent: true
-    state: enabled
-    immediate: yes
-  when: ansible_service_mgr == "systemd"
+#- name: Start and enable tomcat
+#  command: systemctl enable fierwalld && systemctl start firewalld && systemctl status firewalld
+#
+#- name: Open tomcat port on the firewall
+#  firewalld:
+#    port: 8080/tcp
+#    permanent: true
+#    state: enabled
+#    immediate: yes
+#  when: ansible_service_mgr == "systemd"
 
 - name: Set UI access credentials
   template:
